@@ -20,6 +20,7 @@ namespace TurismoSV
 
         public void EliminarMarcador(ref GMapOverlay capaMarcadores, ref GMapControl gmap, int pos)
         {
+            //Elimina el marcador del gMapControl
             capaMarcadores.Markers.RemoveAt(pos);
             gmap.Overlays.Remove(capaMarcadores);
             gmap.Overlays.Add(capaMarcadores);
@@ -27,6 +28,7 @@ namespace TurismoSV
 
         private void CrearMarcador(ref GMapOverlay capaMarcadores, ref GMapControl gmap)
         {
+            //Pone el marcador en el gMapControl
             GMarkerGoogle marcador = new GMarkerGoogle(new PointLatLng(lat, lng), tipo);
             capaMarcadores.Markers.Add(marcador);
 
@@ -38,6 +40,7 @@ namespace TurismoSV
 
         public Punto(Double lat, Double lng, string nombre, GMarkerGoogleType tipo, ref GMapOverlay capaMarcadores, ref GMapControl gmap)
         {
+            //Construye el punto y manda a ponerlo en el mapa
             this.lat = lat;
             this.lng = lng;
             this.nombre = nombre;

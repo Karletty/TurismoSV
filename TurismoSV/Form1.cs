@@ -32,13 +32,13 @@ namespace TurismoSV
         public Form1()
         {
             InitializeComponent();
-            grafo = new Grafo();
+            //Al iniciar el formulario comienza a obtener la ubicación
             ObtenerUbicacion();
-            Thread.Sleep(1000);
         }
 
         private void ConfigurarMapa()
         {
+            //Configura el mapa con una apiKey, con el proovedor de  de google, permite que el mapa se arrastre con el botón izquierdo del mouse y lo ubica centrando el mapa en la ubicación actual, pone el zoom máximo y mínimo
             GMapProviders.GoogleMap.ApiKey = AppConfig.Key;
             GMaps.Instance.Mode = AccessMode.ServerAndCache;
             gMapControl1.DragButton = MouseButtons.Left;
@@ -53,25 +53,30 @@ namespace TurismoSV
 
         private void ObtenerUbicacion()
         {
+            //Comienza a ubicar
             GeoCoordinateWatcher watcher = new GeoCoordinateWatcher();
             watcher.Start();
             Thread.Sleep(1000);
-
+            
             GeoCoordinate coord = watcher.Position.Location;
             if (coord.IsUnknown != true)
             {
+                //Si la coordenada existe, guarda la latitud y longitud y le da valor el nodo origen
                 latInicial = coord.Latitude;
                 lngInicial = coord.Longitude;
                 nodoOrigen = new Vertice("Ubicación Actual", latInicial, lngInicial);
+                //Añade el punto a la lista de puntos, al mapa y al grafo, conecta al punto con él mismo
                 Punto punto = new Punto(latInicial, lngInicial, "Ubicación actual", GMarkerGoogleType.blue, ref markerOverlay, ref gMapControl1);
                 puntos.Add(punto);
                 grafo.AgregarVertice(punto.nombre, punto.lat, punto.lng);
                 grafo.AgregarArco(punto.nombre, punto.nombre, 0);
+                //Actualiza la tabla de puntos
                 actualizarDgv();
             } 
             else
             {
-                if (MessageBox.Show("No se pudo ubicar, desea reintentar", "Error", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                //Si la ubicación no se ha determinado, pregunta si desea reintentar o salir 
+                if (MessageBox.Show("No se pudo ubicar, desea reintentar, asegurese que la ubicación del dispositivo esté activa", "Error", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     ObtenerUbicacion();
                 }
@@ -85,15 +90,18 @@ namespace TurismoSV
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //Crea la información que irá en la tabla con sus columnas
             data = new DataTable();
             data.Columns.Add(new DataColumn("Descripción", typeof(string)));
             data.Columns.Add(new DataColumn("Lat", typeof(double)));
             data.Columns.Add(new DataColumn("lng", typeof(double)));
 
+            //Configura el mapa y añade los registros a la tabla
+            //Los registros se usarán para las rutas propias y los filtros
             ConfigurarMapa();
             Conexion.IngresarDatos();
 
-
+            //Ingresa la posición actual a la tabla
             data.Rows.Add("Ubicación Actual", latInicial, lngInicial);
             dataGridView1.DataSource = data;
         }
@@ -113,27 +121,28 @@ namespace TurismoSV
 
         private void gMapControl1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            //Consigue la latitud y longitud según donde la persona clickeo en el mapa para luego crear un punto y dibujarlo en el mapa
             Double lat = gMapControl1.FromLocalToLatLng(e.X, e.Y).Lat;
             Double lng = gMapControl1.FromLocalToLatLng(e.X, e.Y).Lng;
             Punto punto = new Punto(lat, lng, $"Ubicación {puntos.Count}", GMarkerGoogleType.lightblue, ref markerOverlay, ref gMapControl1);
+            //Agrega el punto en el grafo y lo conecta con él mismo
             grafo.AgregarVertice(punto.nombre, punto.lat, punto.lng);
             grafo.AgregarArco(punto.nombre, punto.nombre, 0);
+            //Conecta el punto con los otros puntos que existan en la lista
             foreach (Punto p in puntos)
             {
                 var ruta = GoogleMapProvider.Instance.GetRoute(new PointLatLng(punto.lat, punto.lng), new PointLatLng(p.lat, p.lng), false, false, 14);
-                var r = new GMapRoute(ruta.Points, "Ruta");
-                var rutas = new GMapOverlay("rutas");
-                rutas.Routes.Add(r);
-                gMapControl1.Overlays.Add(rutas);
                 grafo.AgregarArco(punto.nombre, p.nombre, ruta.Distance);
                 grafo.AgregarArco(p.nombre, punto.nombre, ruta.Distance);
             }
+            //Añade el punto a la lista y actualiza la tabla de puntos
             puntos.Add(punto);
             actualizarDgv();
         }
 
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            //Selecciona una fila
             filaSeleccionada = e.RowIndex;
         }
 
@@ -141,9 +150,15 @@ namespace TurismoSV
         {
             if (filaSeleccionada >= 0 && filaSeleccionada < puntos.Count)
             {
+                //Elimina el marcador del mapa
                 puntos[filaSeleccionada].EliminarMarcador(ref markerOverlay, ref gMapControl1, filaSeleccionada);
+                //Elimina el vértice del grafo
+                grafo.EliminarVertice(grafo.BuscarVertice(puntos[filaSeleccionada].nombre));
+                //Remueve el punto de la lista
                 puntos.RemoveAt(filaSeleccionada);
+                //Actualiza la tabla de puntos
                 actualizarDgv();
+                //Quita la selección de la tabla
                 filaSeleccionada = -1;
             }
             else
@@ -152,12 +167,14 @@ namespace TurismoSV
 
         private void btnHacerRuta_Click(object sender, EventArgs e)
         {
+            /* PARA DIBUJAR LA RUTA, SE USARÁ AL TENER LA RUTA ARMADA
             var ruta = GoogleMapProvider.Instance.GetRoute(new PointLatLng(puntos[0].lat, puntos[0].lng), new PointLatLng(puntos[1].lat, puntos[1].lng), false, false, 14);
-
-            GMapRoute r = new GMapRoute(ruta.Points, "Mi ruta");
-            GMapOverlay capaRutas = new GMapOverlay("rutas");
-            capaRutas.Routes.Add(r);
-            gMapControl1.Overlays.Add(capaRutas);
+            var r = new GMapRoute(ruta.Points, "Ruta");
+            var rutas = new GMapOverlay("rutas");
+            rutas.Routes.Add(r);
+            gMapControl1.Overlays.Add(rutas);
+            gMapControl1.Zoom++;
+            gMapControl1.Zoom--; */
 
         }
 
@@ -166,12 +183,14 @@ namespace TurismoSV
             int zoom = Convert.ToInt32(gMapControl1.Zoom);
             if (zoom >= 10 && zoom <= 20)
             {
+                //Actualiza la barra del zoom según el mapa
                 trackZoom.Value = zoom;
             }
         }
 
         private void trackZoom_ValueChanged(object sender, EventArgs e)
         {
+            //Actualiza el zoom del mapa según la barra
             gMapControl1.Zoom = trackZoom.Value;
         }
     }

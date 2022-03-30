@@ -16,6 +16,8 @@ namespace TurismoSV
     {
         public static SqlConnection ObtenerConexion()
         {
+            //Retorna el string de conexión a la base de datos
+            //Conectar es la cadena de conexión almacenada en la configuracion de propiedades
             SqlConnection Conn = new SqlConnection(Properties.Settings.Default.Conectar);
             return Conn;
         }
@@ -24,9 +26,10 @@ namespace TurismoSV
             IngresarCategorias();
         }
 
-        public static byte[] toByteArray (Image img, ImageFormat format)
+        public static byte[] toByteArray(Image img, ImageFormat format)
         {
-            using(MemoryStream ms = new MemoryStream())
+            //Convierte Image al formato establecido a través de MemoryStream
+            using (MemoryStream ms = new MemoryStream())
             {
                 img.Save(ms, format);
                 return ms.ToArray();
@@ -35,6 +38,8 @@ namespace TurismoSV
 
         private static void IngresarCategorias()
         {
+            //Ingresa las categorías que se usarán para los filtros
+            //Todas las imágenes están guardadas en los recursos de propiedades
             byte[] playa = toByteArray(Properties.Resources.markPlaya, ImageFormat.Png);
             byte[] parque = toByteArray(Properties.Resources.markParque, ImageFormat.Png);
             byte[] bosque = toByteArray(Properties.Resources.markBosque, ImageFormat.Png);

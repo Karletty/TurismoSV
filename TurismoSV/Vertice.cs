@@ -12,17 +12,14 @@ namespace TurismoSV
         public Double lat;
         public Double lng;
         public List<Arco> listaAdyacencia;
-        Dictionary<string, short> banderas;
-        Dictionary<string, short> banderasPredeterminado;
 
         public Vertice(string ubicacion, Double lat, Double lng)
         {
+            //Crea un vértice
             this.ubicacion = ubicacion;
             this.lat = lat;
             this.lng = lng;
             this.listaAdyacencia = new List<Arco>();
-            this.banderas = new Dictionary<string, short>();
-            this.banderasPredeterminado = new Dictionary<string, short>();
         }
         public Vertice(): this("", 0, 0)
         {
