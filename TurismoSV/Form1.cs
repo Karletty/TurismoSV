@@ -31,9 +31,22 @@ namespace TurismoSV
 
         public Form1()
         {
+            GeolocationTests geolocationTests = new GeolocationTests();
+            geolocationTests.ObtenerUbicacion();
             InitializeComponent();
+            latInicial = geolocationTests.ubicacion.Lat;
+            lngInicial = geolocationTests.ubicacion.Lng;
+                nodoOrigen = new Vertice("Ubicación Actual", latInicial, lngInicial);
+            //Añade el punto a la lista de puntos, al mapa y al grafo, conecta al punto con él mismo
+            Punto punto = new Punto(latInicial, lngInicial, "Ubicación actual", GMarkerGoogleType.blue, ref markerOverlay, ref gMapControl1);
+            puntos.Add(punto);
+            grafo.AgregarVertice(punto.nombre, punto.lat, punto.lng);
+            grafo.AgregarArco(punto.nombre, punto.nombre, 0);
+            //Actualiza la tabla de puntos
+            actualizarDgv();
+
             //Al iniciar el formulario comienza a obtener la ubicación
-            ObtenerUbicacion();
+            //ObtenerUbicacion();
         }
 
         private void ConfigurarMapa()
@@ -50,43 +63,6 @@ namespace TurismoSV
             gMapControl1.Zoom = 12;
             gMapControl1.AutoScroll = true;
         }
-
-        private void ObtenerUbicacion()
-        {
-            //Comienza a ubicar
-            GeoCoordinateWatcher watcher = new GeoCoordinateWatcher();
-            watcher.Start();
-            Thread.Sleep(1000);
-            
-            GeoCoordinate coord = watcher.Position.Location;
-            if (coord.IsUnknown != true)
-            {
-                //Si la coordenada existe, guarda la latitud y longitud y le da valor el nodo origen
-                latInicial = coord.Latitude;
-                lngInicial = coord.Longitude;
-                nodoOrigen = new Vertice("Ubicación Actual", latInicial, lngInicial);
-                //Añade el punto a la lista de puntos, al mapa y al grafo, conecta al punto con él mismo
-                Punto punto = new Punto(latInicial, lngInicial, "Ubicación actual", GMarkerGoogleType.blue, ref markerOverlay, ref gMapControl1);
-                puntos.Add(punto);
-                grafo.AgregarVertice(punto.nombre, punto.lat, punto.lng);
-                grafo.AgregarArco(punto.nombre, punto.nombre, 0);
-                //Actualiza la tabla de puntos
-                actualizarDgv();
-            } 
-            else
-            {
-                //Si la ubicación no se ha determinado, pregunta si desea reintentar o salir 
-                if (MessageBox.Show("No se pudo ubicar, desea reintentar, asegurese que la ubicación del dispositivo esté activa", "Error", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    ObtenerUbicacion();
-                }
-                else
-                {
-                    Application.Exit();
-                }
-            }
-        }
-
 
         private void Form1_Load(object sender, EventArgs e)
         {
