@@ -565,8 +565,10 @@ namespace TurismoSV
                     grafo.EliminarVertice(grafo.nodos[1]);
                 }
             }
-            routesOverlay.Routes.Clear();
-            gMapControl1.Overlays.Remove(routesOverlay);
+            if (gMapControl1.Overlays.Contains(routesOverlay))
+            {
+                gMapControl1.Overlays.Remove(routesOverlay);
+            }
             Ruta();
 
         }
