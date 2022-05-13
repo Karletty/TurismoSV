@@ -167,6 +167,8 @@ namespace TurismoSV
                 filaSeleccionada = -1;
                 gMapControl1.Overlays.Clear();
                 gMapControl1.Overlays.Add(markerOverlay);
+                gMapControl1.Overlays.Add(searchOverlay);
+                routesOverlay.Clear();
                 hayRuta = false;
             }
             else
@@ -233,7 +235,6 @@ namespace TurismoSV
 
         private void Dibujar(PointLatLng punto, string nombre, Bitmap bmark)
         {
-            searchOverlay = new GMapOverlay();
             GMapMarker mark = new GMarkerGoogle(punto, bmark);
             searchOverlay.Markers.Add(mark);
             mark.ToolTipMode = MarkerTooltipMode.OnMouseOver;
@@ -422,12 +423,15 @@ namespace TurismoSV
             }
         }
 
-
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             gMapControl1.Overlays.Clear();
             gMapControl1.Overlays.Add(markerOverlay);
             gMapControl1.Overlays.Add(routesOverlay);
+            searchOverlay.Clear();
+            clbxCultura.ClearSelected();
+            clbxNaturaleza.ClearSelected();
+            clbxEntretenimiento.ClearSelected();
         }
 
         private void btnEstimarPrecio_Click(object sender, EventArgs e)
@@ -441,7 +445,7 @@ namespace TurismoSV
                 for (int i = 0; i < rutaMasCorta.Count(); i++)
                 {
                     txt += $" la {rutaMasCorta.ElementAt(i).ToString()}";
-                    if(i+1 < rutaMasCorta.Count())
+                    if (i + 1 < rutaMasCorta.Count())
                     {
                         txt += $", ";
                     }
