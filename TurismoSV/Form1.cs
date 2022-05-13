@@ -554,7 +554,6 @@ namespace TurismoSV
         private void dropdownRutas_SelectedIndexChanged(object sender, EventArgs e)
         {
             Punto inicio = puntos[0];
-            Vertice ubActual = grafo.nodos[0];
             puntos.Clear();
             puntos.Add(inicio);
             actualizarDgv();
@@ -566,6 +565,8 @@ namespace TurismoSV
                     grafo.EliminarVertice(grafo.nodos[1]);
                 }
             }
+            routesOverlay.Routes.Clear();
+            gMapControl1.Overlays.Remove(routesOverlay);
             Ruta();
 
         }
