@@ -49,7 +49,7 @@
             this.btnHacerRuta = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.bunifuDropdown1 = new Bunifu.UI.WinForms.BunifuDropdown();
+            this.dropdownRutas = new Bunifu.UI.WinForms.BunifuDropdown();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -89,7 +89,7 @@
             this.label3.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(28, 36);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 19);
+            this.label3.Size = new System.Drawing.Size(100, 24);
             this.label3.TabIndex = 10;
             this.label3.Text = "Naturaleza";
             // 
@@ -99,7 +99,7 @@
             this.label4.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(410, 36);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(57, 19);
+            this.label4.Size = new System.Drawing.Size(69, 24);
             this.label4.TabIndex = 11;
             this.label4.Text = "Cultura";
             // 
@@ -109,7 +109,7 @@
             this.label5.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(210, 36);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(116, 19);
+            this.label5.Size = new System.Drawing.Size(143, 24);
             this.label5.TabIndex = 12;
             this.label5.Text = "Entretenimiento";
             // 
@@ -124,7 +124,7 @@
             "Lagos"});
             this.clbxNaturaleza.Location = new System.Drawing.Point(32, 58);
             this.clbxNaturaleza.Name = "clbxNaturaleza";
-            this.clbxNaturaleza.Size = new System.Drawing.Size(139, 88);
+            this.clbxNaturaleza.Size = new System.Drawing.Size(139, 82);
             this.clbxNaturaleza.TabIndex = 13;
             // 
             // clbxEntretenimiento
@@ -138,7 +138,7 @@
             "Estadios"});
             this.clbxEntretenimiento.Location = new System.Drawing.Point(214, 58);
             this.clbxEntretenimiento.Name = "clbxEntretenimiento";
-            this.clbxEntretenimiento.Size = new System.Drawing.Size(169, 88);
+            this.clbxEntretenimiento.Size = new System.Drawing.Size(169, 82);
             this.clbxEntretenimiento.TabIndex = 14;
             // 
             // clbxCultura
@@ -152,7 +152,7 @@
             "Teatro"});
             this.clbxCultura.Location = new System.Drawing.Point(414, 58);
             this.clbxCultura.Name = "clbxCultura";
-            this.clbxCultura.Size = new System.Drawing.Size(170, 88);
+            this.clbxCultura.Size = new System.Drawing.Size(170, 82);
             this.clbxCultura.TabIndex = 15;
             // 
             // label11
@@ -197,7 +197,7 @@
             0,
             131072});
             this.nudRadio.Name = "nudRadio";
-            this.nudRadio.Size = new System.Drawing.Size(179, 29);
+            this.nudRadio.Size = new System.Drawing.Size(179, 35);
             this.nudRadio.TabIndex = 11;
             this.nudRadio.Value = new decimal(new int[] {
             25,
@@ -263,7 +263,7 @@
             this.bunifuGroupBox2.Controls.Add(this.btnHacerRuta);
             this.bunifuGroupBox2.Controls.Add(this.btnEliminar);
             this.bunifuGroupBox2.Controls.Add(this.label6);
-            this.bunifuGroupBox2.Controls.Add(this.bunifuDropdown1);
+            this.bunifuGroupBox2.Controls.Add(this.dropdownRutas);
             this.bunifuGroupBox2.Controls.Add(this.dataGridView1);
             this.bunifuGroupBox2.Controls.Add(this.label7);
             this.bunifuGroupBox2.Controls.Add(this.label9);
@@ -322,59 +322,60 @@
             this.label6.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(21, 36);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(107, 19);
+            this.label6.Size = new System.Drawing.Size(131, 24);
             this.label6.TabIndex = 10;
             this.label6.Text = "Nuestras rutas";
             // 
-            // bunifuDropdown1
+            // dropdownRutas
             // 
-            this.bunifuDropdown1.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuDropdown1.BackgroundColor = System.Drawing.Color.White;
-            this.bunifuDropdown1.BorderColor = System.Drawing.Color.Silver;
-            this.bunifuDropdown1.BorderRadius = 1;
-            this.bunifuDropdown1.Color = System.Drawing.Color.Silver;
-            this.bunifuDropdown1.Direction = Bunifu.UI.WinForms.BunifuDropdown.Directions.Down;
-            this.bunifuDropdown1.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.bunifuDropdown1.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.bunifuDropdown1.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.bunifuDropdown1.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.bunifuDropdown1.DisabledIndicatorColor = System.Drawing.Color.DarkGray;
-            this.bunifuDropdown1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.bunifuDropdown1.DropdownBorderThickness = Bunifu.UI.WinForms.BunifuDropdown.BorderThickness.Thin;
-            this.bunifuDropdown1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.bunifuDropdown1.DropDownTextAlign = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
-            this.bunifuDropdown1.FillDropDown = true;
-            this.bunifuDropdown1.FillIndicator = false;
-            this.bunifuDropdown1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bunifuDropdown1.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuDropdown1.ForeColor = System.Drawing.Color.Black;
-            this.bunifuDropdown1.FormattingEnabled = true;
-            this.bunifuDropdown1.Icon = null;
-            this.bunifuDropdown1.IndicatorAlignment = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
-            this.bunifuDropdown1.IndicatorColor = System.Drawing.Color.DarkGray;
-            this.bunifuDropdown1.IndicatorLocation = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
-            this.bunifuDropdown1.IndicatorThickness = 2;
-            this.bunifuDropdown1.IsDropdownOpened = false;
-            this.bunifuDropdown1.ItemBackColor = System.Drawing.Color.White;
-            this.bunifuDropdown1.ItemBorderColor = System.Drawing.Color.White;
-            this.bunifuDropdown1.ItemForeColor = System.Drawing.Color.Black;
-            this.bunifuDropdown1.ItemHeight = 26;
-            this.bunifuDropdown1.ItemHighLightColor = System.Drawing.Color.DodgerBlue;
-            this.bunifuDropdown1.ItemHighLightForeColor = System.Drawing.Color.White;
-            this.bunifuDropdown1.Items.AddRange(new object[] {
+            this.dropdownRutas.BackColor = System.Drawing.Color.Transparent;
+            this.dropdownRutas.BackgroundColor = System.Drawing.Color.White;
+            this.dropdownRutas.BorderColor = System.Drawing.Color.Silver;
+            this.dropdownRutas.BorderRadius = 1;
+            this.dropdownRutas.Color = System.Drawing.Color.Silver;
+            this.dropdownRutas.Direction = Bunifu.UI.WinForms.BunifuDropdown.Directions.Down;
+            this.dropdownRutas.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dropdownRutas.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.dropdownRutas.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dropdownRutas.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.dropdownRutas.DisabledIndicatorColor = System.Drawing.Color.DarkGray;
+            this.dropdownRutas.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.dropdownRutas.DropdownBorderThickness = Bunifu.UI.WinForms.BunifuDropdown.BorderThickness.Thin;
+            this.dropdownRutas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.dropdownRutas.DropDownTextAlign = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
+            this.dropdownRutas.FillDropDown = true;
+            this.dropdownRutas.FillIndicator = false;
+            this.dropdownRutas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.dropdownRutas.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dropdownRutas.ForeColor = System.Drawing.Color.Black;
+            this.dropdownRutas.FormattingEnabled = true;
+            this.dropdownRutas.Icon = null;
+            this.dropdownRutas.IndicatorAlignment = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
+            this.dropdownRutas.IndicatorColor = System.Drawing.Color.DarkGray;
+            this.dropdownRutas.IndicatorLocation = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
+            this.dropdownRutas.IndicatorThickness = 2;
+            this.dropdownRutas.IsDropdownOpened = false;
+            this.dropdownRutas.ItemBackColor = System.Drawing.Color.White;
+            this.dropdownRutas.ItemBorderColor = System.Drawing.Color.White;
+            this.dropdownRutas.ItemForeColor = System.Drawing.Color.Black;
+            this.dropdownRutas.ItemHeight = 26;
+            this.dropdownRutas.ItemHighLightColor = System.Drawing.Color.DodgerBlue;
+            this.dropdownRutas.ItemHighLightForeColor = System.Drawing.Color.White;
+            this.dropdownRutas.Items.AddRange(new object[] {
             "Ruta de las Flores",
             "Ruta Volcánica",
             "Ruta Religiosa",
             "Ruta Azul",
             "Ruta Arqueológica"});
-            this.bunifuDropdown1.ItemTopMargin = 3;
-            this.bunifuDropdown1.Location = new System.Drawing.Point(25, 58);
-            this.bunifuDropdown1.Name = "bunifuDropdown1";
-            this.bunifuDropdown1.Size = new System.Drawing.Size(191, 32);
-            this.bunifuDropdown1.TabIndex = 11;
-            this.bunifuDropdown1.Text = null;
-            this.bunifuDropdown1.TextAlignment = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
-            this.bunifuDropdown1.TextLeftMargin = 5;
+            this.dropdownRutas.ItemTopMargin = 3;
+            this.dropdownRutas.Location = new System.Drawing.Point(25, 58);
+            this.dropdownRutas.Name = "dropdownRutas";
+            this.dropdownRutas.Size = new System.Drawing.Size(191, 32);
+            this.dropdownRutas.TabIndex = 11;
+            this.dropdownRutas.Text = null;
+            this.dropdownRutas.TextAlignment = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
+            this.dropdownRutas.TextLeftMargin = 5;
+            this.dropdownRutas.SelectedIndexChanged += new System.EventHandler(this.dropdownRutas_SelectedIndexChanged);
             // 
             // dataGridView1
             // 
@@ -398,7 +399,7 @@
             this.label7.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(21, 112);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(84, 19);
+            this.label7.Size = new System.Drawing.Size(103, 24);
             this.label7.TabIndex = 12;
             this.label7.Text = "Descripción";
             this.label7.Visible = false;
@@ -409,7 +410,7 @@
             this.label9.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(260, 36);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(93, 19);
+            this.label9.Size = new System.Drawing.Size(113, 24);
             this.label9.TabIndex = 14;
             this.label9.Text = "Arma tu ruta";
             // 
@@ -447,7 +448,7 @@
             this.trackZoom.Maximum = 20;
             this.trackZoom.Minimum = 10;
             this.trackZoom.Name = "trackZoom";
-            this.trackZoom.Size = new System.Drawing.Size(261, 45);
+            this.trackZoom.Size = new System.Drawing.Size(261, 56);
             this.trackZoom.TabIndex = 20;
             this.trackZoom.Value = 12;
             this.trackZoom.ValueChanged += new System.EventHandler(this.trackZoom_ValueChanged);
@@ -458,7 +459,7 @@
             this.label1.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(471, 647);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 19);
+            this.label1.Size = new System.Drawing.Size(58, 24);
             this.label1.TabIndex = 19;
             this.label1.Text = "Zoom";
             // 
@@ -553,7 +554,7 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1335, 694);
@@ -609,7 +610,7 @@
         private Bunifu.UI.WinForms.BunifuGroupBox bunifuGroupBox2;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Label label6;
-        private Bunifu.UI.WinForms.BunifuDropdown bunifuDropdown1;
+        private Bunifu.UI.WinForms.BunifuDropdown dropdownRutas;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
