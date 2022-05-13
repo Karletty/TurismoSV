@@ -62,7 +62,7 @@ namespace TurismoSV
         public bool AgregarArco(Vertice origen, Vertice destino, Double peso)
         {
             //Revisa si no ya hay una conexión entre el nodo origen y el nodo destino
-            if(origen.listaAdyacencia.Find(v=>v.destino == destino) == null)
+            if (origen.listaAdyacencia.Find(v => v.destino == destino) == null)
             {
                 //Añade la conexión entre los dos nodos a la lista de adyacencia
                 origen.listaAdyacencia.Add(new Arco(destino, peso));
@@ -71,7 +71,7 @@ namespace TurismoSV
             return false;
         }
 
-        public Double [,] crearMatriz()
+        public Double[,] crearMatriz()
         {
             //Crea una matriz de adyacencia con todos los puntos del grafo
             Double[,] matriz = new Double[nodos.Count, nodos.Count];

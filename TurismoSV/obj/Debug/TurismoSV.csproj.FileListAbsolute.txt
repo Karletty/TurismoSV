@@ -408,3 +408,5 @@ C:\Users\karle\OneDrive\Documentos\CICLO III\PED G03T\PROYECTO CÁTEDRA\Fase 3\T
 C:\Users\karle\OneDrive\Documentos\CICLO III\PED G03T\PROYECTO CÁTEDRA\Fase 3\TurismoSV\TurismoSV\obj\Debug\TurismoSV.csproj.CopyComplete
 C:\Users\karle\OneDrive\Documentos\CICLO III\PED G03T\PROYECTO CÁTEDRA\Fase 3\TurismoSV\TurismoSV\obj\Debug\TurismoSV.exe
 C:\Users\karle\OneDrive\Documentos\CICLO III\PED G03T\PROYECTO CÁTEDRA\Fase 3\TurismoSV\TurismoSV\obj\Debug\TurismoSV.pdb
+C:\Users\karle\OneDrive\Documentos\CICLO III\PED G03T\PROYECTO CÁTEDRA\Fase 3\TurismoSV\TurismoSV\obj\Debug\TurismoSV.FrmMatrizAdy.resources
+C:\Users\karle\OneDrive\Documentos\CICLO III\PED G03T\PROYECTO CÁTEDRA\Fase 3\TurismoSV\TurismoSV\obj\Debug\TurismoSV.FrmPago.resources

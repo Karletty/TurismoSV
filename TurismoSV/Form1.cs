@@ -14,6 +14,13 @@ using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using GMap.NET.WindowsForms.ToolTips;
+using GoogleApi;
+using GoogleApi.Entities.Common;
+using GoogleApi.Entities.Common.Enums;
+using GoogleApi.Entities.Maps.Geolocation.Request;
+using GoogleApi.Entities.Places.Common.Enums;
+using GoogleApi.Entities.Places.Search.Common.Enums;
+using GoogleApi.Entities.Places.Search.NearBy.Request;
 
 
 namespace TurismoSV
@@ -21,22 +28,45 @@ namespace TurismoSV
     public partial class Form1 : Form
     {
         private Grafo grafo = new Grafo();
+        private bool hayRuta = false;
+        IEnumerable<Vertice> rutaMasCorta;
+        private double dist = 0;
+        private FrmMatrizAdy frmMatriz;
+        private FrmPago frmPago;
         private Vertice nodoOrigen;
         GMapOverlay markerOverlay = new GMapOverlay("Marcador");
+        GMapOverlay routesOverlay = new GMapOverlay("Rutas");
+        GMapOverlay searchOverlay = new GMapOverlay("busq");
         DataTable data;
         List<Punto> puntos = new List<Punto>();
         int filaSeleccionada = -1;
         Double latInicial;
         Double lngInicial;
+        GoogleApi geolocationTests = new GoogleApi();
+        enum Categorias
+        {
+            Playa,
+            Parque,
+            Bosque,
+            Lago,
+            Zoo,
+            Mall,
+            Restaurante,
+            Estadio,
+            Museo,
+            SitioArq,
+            Iglesia,
+            Teatro
+        }
+        private Categorias cat;
 
         public Form1()
         {
-            GeolocationTests geolocationTests = new GeolocationTests();
             geolocationTests.ObtenerUbicacion();
             InitializeComponent();
             latInicial = geolocationTests.ubicacion.Lat;
             lngInicial = geolocationTests.ubicacion.Lng;
-                nodoOrigen = new Vertice("Ubicación Actual", latInicial, lngInicial);
+            nodoOrigen = new Vertice("Ubicación Actual", latInicial, lngInicial);
             //Añade el punto a la lista de puntos, al mapa y al grafo, conecta al punto con él mismo
             Punto punto = new Punto(latInicial, lngInicial, "Ubicación actual", GMarkerGoogleType.blue, ref markerOverlay, ref gMapControl1);
             puntos.Add(punto);
@@ -44,9 +74,8 @@ namespace TurismoSV
             grafo.AgregarArco(punto.nombre, punto.nombre, 0);
             //Actualiza la tabla de puntos
             actualizarDgv();
-
-            //Al iniciar el formulario comienza a obtener la ubicación
-            //ObtenerUbicacion();
+            frmMatriz = new FrmMatrizAdy();
+            frmPago = new FrmPago();
         }
 
         private void ConfigurarMapa()
@@ -75,7 +104,6 @@ namespace TurismoSV
             //Configura el mapa y añade los registros a la tabla
             //Los registros se usarán para las rutas propias y los filtros
             ConfigurarMapa();
-            Conexion.IngresarDatos();
 
             //Ingresa la posición actual a la tabla
             data.Rows.Add("Ubicación Actual", latInicial, lngInicial);
@@ -86,6 +114,7 @@ namespace TurismoSV
         {
             Application.Exit();
         }
+
         private void actualizarDgv()
         {
             dataGridView1.DataSource = null;
@@ -136,6 +165,9 @@ namespace TurismoSV
                 actualizarDgv();
                 //Quita la selección de la tabla
                 filaSeleccionada = -1;
+                gMapControl1.Overlays.Clear();
+                gMapControl1.Overlays.Add(markerOverlay);
+                hayRuta = false;
             }
             else
                 MessageBox.Show("No ha seleccionado ninguna ubicación");
@@ -143,15 +175,44 @@ namespace TurismoSV
 
         private void btnHacerRuta_Click(object sender, EventArgs e)
         {
-            /* PARA DIBUJAR LA RUTA, SE USARÁ AL TENER LA RUTA ARMADA
-            var ruta = GoogleMapProvider.Instance.GetRoute(new PointLatLng(puntos[0].lat, puntos[0].lng), new PointLatLng(puntos[1].lat, puntos[1].lng), false, false, 14);
-            var r = new GMapRoute(ruta.Points, "Ruta");
-            var rutas = new GMapOverlay("rutas");
-            rutas.Routes.Add(r);
-            gMapControl1.Overlays.Add(rutas);
-            gMapControl1.Zoom++;
-            gMapControl1.Zoom--; */
+            if (grafo.nodos.Count > 1)
+            {
+                Double[,] matriz = grafo.crearMatriz();
+                int totNodos = grafo.nodos.Count;
+                Dijkstra ruta = new Dijkstra(totNodos, matriz, grafo.nodos);
+                //frmMatriz.MostrarMatriz(matriz, totNodos, grafo.nodos);
+                //frmMatriz.ShowDialog();
+                rutaMasCorta = ruta.rutaMasCorta;
+                dist = ruta.dmin;
+                for (int i = 1; i < rutaMasCorta.Count(); i++)
+                {
+                    PointLatLng inicio = new PointLatLng();
+                    PointLatLng final = new PointLatLng();
+                    for (int j = 0; j < puntos.Count; j++)
+                    {
+                        if (puntos[j].nombre == rutaMasCorta.ElementAt(i - 1).ToString())
+                        {
+                            inicio = new PointLatLng(puntos[j].lat, puntos[j].lng);
+                        }
+                        if (puntos[j].nombre == rutaMasCorta.ElementAt(i).ToString())
+                        {
+                            final = new PointLatLng(puntos[j].lat, puntos[j].lng);
+                        }
+                    }
+                    var pedazoRuta = GoogleMapProvider.Instance.GetRoute(inicio, final, false, false, 14);
+                    var r = new GMapRoute(pedazoRuta.Points, "Ruta");
+                    routesOverlay.Routes.Add(r);
+                    gMapControl1.Overlays.Add(routesOverlay);
 
+                }
+                hayRuta = true;
+                gMapControl1.Zoom++;
+                gMapControl1.Zoom--;
+            }
+            else
+            {
+                MessageBox.Show("Necesita al menos dos puntos para hacer una ruta");
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -168,6 +229,231 @@ namespace TurismoSV
         {
             //Actualiza el zoom del mapa según la barra
             gMapControl1.Zoom = trackZoom.Value;
+        }
+
+        private void Dibujar(PointLatLng punto, string nombre, Bitmap bmark)
+        {
+            searchOverlay = new GMapOverlay();
+            GMapMarker mark = new GMarkerGoogle(punto, bmark);
+            searchOverlay.Markers.Add(mark);
+            mark.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+            mark.ToolTipText = nombre;
+            gMapControl1.Overlays.Add(searchOverlay);
+        }
+
+        private void RecorrerLugares(List<PointLatLng> puntos, List<string> nombres)
+        {
+            for (int i = 0; i < puntos.Count; i++)
+            {
+                Bitmap bmark;
+                Size t = new Size(25, 25);
+                switch (cat)
+                {
+                    case Categorias.Playa:
+                        bmark = new Bitmap(Properties.Resources.markPlaya, t);
+                        Dibujar(puntos[i], nombres[i], bmark);
+                        break;
+                    case Categorias.Parque:
+                        bmark = new Bitmap(Properties.Resources.markParque, t);
+                        Dibujar(puntos[i], nombres[i], bmark);
+                        break;
+                    case Categorias.Bosque:
+                        bmark = new Bitmap(Properties.Resources.markBosque, t);
+                        Dibujar(puntos[i], nombres[i], bmark);
+                        break;
+                    case Categorias.Lago:
+                        bmark = new Bitmap(Properties.Resources.markLago, t);
+                        Dibujar(puntos[i], nombres[i], bmark);
+                        break;
+                    case Categorias.Zoo:
+                        bmark = new Bitmap(Properties.Resources.markZoologico, t);
+                        Dibujar(puntos[i], nombres[i], bmark);
+                        break;
+                    case Categorias.Mall:
+                        bmark = new Bitmap(Properties.Resources.markCentroComercial, t);
+                        Dibujar(puntos[i], nombres[i], bmark);
+                        break;
+                    case Categorias.Restaurante:
+                        bmark = new Bitmap(Properties.Resources.markRestaurante, t);
+                        Dibujar(puntos[i], nombres[i], bmark);
+                        break;
+                    case Categorias.Estadio:
+                        bmark = new Bitmap(Properties.Resources.markEstadio, t);
+                        Dibujar(puntos[i], nombres[i], bmark);
+                        break;
+                    case Categorias.Museo:
+                        bmark = new Bitmap(Properties.Resources.markMuseo, t);
+                        Dibujar(puntos[i], nombres[i], bmark);
+                        break;
+                    case Categorias.SitioArq:
+                        bmark = new Bitmap(Properties.Resources.markSitioArqueologico, t);
+                        Dibujar(puntos[i], nombres[i], bmark);
+                        break;
+                    case Categorias.Iglesia:
+                        bmark = new Bitmap(Properties.Resources.markIglesia, t);
+                        Dibujar(puntos[i], nombres[i], bmark);
+                        break;
+                    case Categorias.Teatro:
+                        bmark = new Bitmap(Properties.Resources.markTeatro, t);
+                        Dibujar(puntos[i], nombres[i], bmark);
+                        break;
+                }
+            }
+        }
+
+        private void HacerBusquedaCultura()
+        {
+            int radio = (int)(nudRadio.Value * 1000);
+            string keyword;
+            for (int i = 0; i < clbxCultura.CheckedIndices.Count; i++)
+            {
+                keyword = "";
+                int indice = clbxCultura.CheckedIndices[i];
+                switch (indice)
+                {
+                    case 0:
+                        keyword = "Museo";
+                        cat = Categorias.Museo;
+                        break;
+                    case 1:
+                        keyword = "Sitio Arqueológico";
+                        cat = Categorias.SitioArq;
+                        break;
+                    case 2:
+                        keyword = "Iglesia";
+                        cat = Categorias.Iglesia;
+                        break;
+                    case 3:
+                        keyword = "Teatro";
+                        cat = Categorias.Teatro;
+                        break;
+                    default:
+                        break;
+                }
+                geolocationTests.PlacesTextSearchKeyword(keyword, latInicial, lngInicial, radio);
+                RecorrerLugares(geolocationTests.lugares, geolocationTests.nombresLugares);
+            }
+        }
+
+        private void HacerBusquedaNaturaleza()
+        {
+            int radio = (int)(nudRadio.Value * 1000);
+            string keyword;
+            for (int i = 0; i < clbxNaturaleza.CheckedIndices.Count; i++)
+            {
+                keyword = "";
+                int indice = clbxNaturaleza.CheckedIndices[i];
+                switch (indice)
+                {
+                    case 0:
+                        keyword = "Playa";
+                        cat = Categorias.Playa;
+                        break;
+                    case 1:
+                        keyword = "Parque";
+                        cat = Categorias.Parque;
+                        break;
+                    case 2:
+                        keyword = "Bosque";
+                        cat = Categorias.Bosque;
+                        break;
+                    case 3:
+                        keyword = "Lago";
+                        cat = Categorias.Lago;
+                        break;
+                    default:
+                        break;
+                }
+                geolocationTests.PlacesTextSearchKeyword(keyword, latInicial, lngInicial, radio);
+                RecorrerLugares(geolocationTests.lugares, geolocationTests.nombresLugares);
+            }
+        }
+
+        private void HacerBusquedaEntretenimiento()
+        {
+            int radio = (int)(nudRadio.Value * 1000);
+            string keyword;
+            for (int i = 0; i < clbxEntretenimiento.CheckedIndices.Count; i++)
+            {
+                keyword = "";
+                int indice = clbxEntretenimiento.CheckedIndices[i];
+                switch (indice)
+                {
+                    case 0:
+                        keyword = "Zoologico";
+                        cat = Categorias.Zoo;
+                        break;
+                    case 1:
+                        keyword = "Centro Comercial";
+                        cat = Categorias.Mall;
+                        geolocationTests.PlacesTextSearchKeyword("Mall", latInicial, lngInicial, radio);
+                        RecorrerLugares(geolocationTests.lugares, geolocationTests.nombresLugares);
+                        break;
+                    case 2:
+                        keyword = "Restaurante";
+                        cat = Categorias.Restaurante;
+                        break;
+                    case 3:
+                        keyword = "Estadio";
+                        cat = Categorias.Estadio;
+                        break;
+                    default:
+                        break;
+                }
+                geolocationTests.PlacesTextSearchKeyword(keyword, latInicial, lngInicial, radio);
+                RecorrerLugares(geolocationTests.lugares, geolocationTests.nombresLugares);
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            List<string> cultura = new List<string>();
+            if (clbxCultura.CheckedItems.Count > 0)
+            {
+                HacerBusquedaCultura();
+            }
+            if (clbxNaturaleza.CheckedItems.Count > 0)
+            {
+                HacerBusquedaNaturaleza();
+            }
+            if (clbxEntretenimiento.CheckedItems.Count > 0)
+            {
+                HacerBusquedaEntretenimiento();
+            }
+        }
+
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            gMapControl1.Overlays.Clear();
+            gMapControl1.Overlays.Add(markerOverlay);
+            gMapControl1.Overlays.Add(routesOverlay);
+        }
+
+        private void btnEstimarPrecio_Click(object sender, EventArgs e)
+        {
+            Double precio = 0.55;
+            Double costo;
+            if (hayRuta)
+            {
+                costo = dist * precio;
+                string txt = $"La ruta que pasa por: ";
+                for (int i = 0; i < rutaMasCorta.Count(); i++)
+                {
+                    txt += $" la {rutaMasCorta.ElementAt(i).ToString()}";
+                    if(i+1 < rutaMasCorta.Count())
+                    {
+                        txt += $", ";
+                    }
+                }
+                txt += $". Tiene una distancia de {dist} kilómetros y por lo tanto un costo de ${costo:N2}";
+                frmPago.CambiarTexto(txt);
+                frmPago.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No hay una ruta disponible para realizar una estimación");
+            }
         }
     }
 }

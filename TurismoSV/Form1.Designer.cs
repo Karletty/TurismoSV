@@ -35,15 +35,17 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
-            this.checkedListBox3 = new System.Windows.Forms.CheckedListBox();
+            this.clbxNaturaleza = new System.Windows.Forms.CheckedListBox();
+            this.clbxEntretenimiento = new System.Windows.Forms.CheckedListBox();
+            this.clbxCultura = new System.Windows.Forms.CheckedListBox();
             this.label11 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.nudRadio = new System.Windows.Forms.NumericUpDown();
             this.bunifuGroupBox1 = new Bunifu.UI.WinForms.BunifuGroupBox();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.bunifuGroupBox2 = new Bunifu.UI.WinForms.BunifuGroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnHacerRuta = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -51,17 +53,16 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.gMapControl1 = new GMap.NET.WindowsForms.GMapControl();
             this.trackZoom = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.bunifuPanel1 = new Bunifu.UI.WinForms.BunifuPanel();
-            this.bunifuTileButton2 = new Bunifu.Framework.UI.BunifuTileButton();
+            this.btnEstimarPrecio = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnSalir = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRadio)).BeginInit();
             this.bunifuGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.bunifuGroupBox2.SuspendLayout();
@@ -74,7 +75,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(253)))), ((int)(((byte)(203)))));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(253)))), ((int)(((byte)(236)))));
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(161, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
@@ -112,47 +113,47 @@
             this.label5.TabIndex = 12;
             this.label5.Text = "Entretenimiento";
             // 
-            // checkedListBox1
+            // clbxNaturaleza
             // 
-            this.checkedListBox1.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
+            this.clbxNaturaleza.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clbxNaturaleza.FormattingEnabled = true;
+            this.clbxNaturaleza.Items.AddRange(new object[] {
             "Playas",
             "Parques",
             "Bosques",
             "Lagos"});
-            this.checkedListBox1.Location = new System.Drawing.Point(32, 58);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(139, 67);
-            this.checkedListBox1.TabIndex = 13;
+            this.clbxNaturaleza.Location = new System.Drawing.Point(32, 58);
+            this.clbxNaturaleza.Name = "clbxNaturaleza";
+            this.clbxNaturaleza.Size = new System.Drawing.Size(139, 88);
+            this.clbxNaturaleza.TabIndex = 13;
             // 
-            // checkedListBox2
+            // clbxEntretenimiento
             // 
-            this.checkedListBox2.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkedListBox2.FormattingEnabled = true;
-            this.checkedListBox2.Items.AddRange(new object[] {
+            this.clbxEntretenimiento.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clbxEntretenimiento.FormattingEnabled = true;
+            this.clbxEntretenimiento.Items.AddRange(new object[] {
             "Zoológicos",
             "Centros comerciales",
             "Restaurantes",
             "Estadios"});
-            this.checkedListBox2.Location = new System.Drawing.Point(214, 58);
-            this.checkedListBox2.Name = "checkedListBox2";
-            this.checkedListBox2.Size = new System.Drawing.Size(169, 67);
-            this.checkedListBox2.TabIndex = 14;
+            this.clbxEntretenimiento.Location = new System.Drawing.Point(214, 58);
+            this.clbxEntretenimiento.Name = "clbxEntretenimiento";
+            this.clbxEntretenimiento.Size = new System.Drawing.Size(169, 88);
+            this.clbxEntretenimiento.TabIndex = 14;
             // 
-            // checkedListBox3
+            // clbxCultura
             // 
-            this.checkedListBox3.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkedListBox3.FormattingEnabled = true;
-            this.checkedListBox3.Items.AddRange(new object[] {
+            this.clbxCultura.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clbxCultura.FormattingEnabled = true;
+            this.clbxCultura.Items.AddRange(new object[] {
             "Museos",
-            "Sitios Arqueológicos",
+            "Sitio Arqueológico",
             "Iglesias",
-            "Teatros"});
-            this.checkedListBox3.Location = new System.Drawing.Point(414, 58);
-            this.checkedListBox3.Name = "checkedListBox3";
-            this.checkedListBox3.Size = new System.Drawing.Size(170, 67);
-            this.checkedListBox3.TabIndex = 15;
+            "Teatro"});
+            this.clbxCultura.Location = new System.Drawing.Point(414, 58);
+            this.clbxCultura.Name = "clbxCultura";
+            this.clbxCultura.Size = new System.Drawing.Size(170, 88);
+            this.clbxCultura.TabIndex = 15;
             // 
             // label11
             // 
@@ -174,46 +175,49 @@
             this.btnBuscar.TabIndex = 16;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // numericUpDown1
+            // nudRadio
             // 
-            this.numericUpDown1.Increment = new decimal(new int[] {
-            10,
+            this.nudRadio.DecimalPlaces = 2;
+            this.nudRadio.Increment = new decimal(new int[] {
+            25,
+            0,
+            0,
+            131072});
+            this.nudRadio.Location = new System.Drawing.Point(702, 65);
+            this.nudRadio.Maximum = new decimal(new int[] {
+            50,
             0,
             0,
             0});
-            this.numericUpDown1.Location = new System.Drawing.Point(702, 65);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            250,
+            this.nudRadio.Minimum = new decimal(new int[] {
+            25,
             0,
             0,
-            0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
-            10,
+            131072});
+            this.nudRadio.Name = "nudRadio";
+            this.nudRadio.Size = new System.Drawing.Size(179, 29);
+            this.nudRadio.TabIndex = 11;
+            this.nudRadio.Value = new decimal(new int[] {
+            25,
             0,
             0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(179, 29);
-            this.numericUpDown1.TabIndex = 11;
-            this.numericUpDown1.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
+            131072});
             // 
             // bunifuGroupBox1
             // 
             this.bunifuGroupBox1.BorderColor = System.Drawing.Color.LightGray;
             this.bunifuGroupBox1.BorderRadius = 10;
             this.bunifuGroupBox1.BorderThickness = 1;
-            this.bunifuGroupBox1.Controls.Add(this.numericUpDown1);
+            this.bunifuGroupBox1.Controls.Add(this.btnLimpiar);
+            this.bunifuGroupBox1.Controls.Add(this.nudRadio);
             this.bunifuGroupBox1.Controls.Add(this.btnBuscar);
             this.bunifuGroupBox1.Controls.Add(this.label11);
             this.bunifuGroupBox1.Controls.Add(this.pictureBox4);
-            this.bunifuGroupBox1.Controls.Add(this.checkedListBox3);
-            this.bunifuGroupBox1.Controls.Add(this.checkedListBox2);
-            this.bunifuGroupBox1.Controls.Add(this.checkedListBox1);
+            this.bunifuGroupBox1.Controls.Add(this.clbxCultura);
+            this.bunifuGroupBox1.Controls.Add(this.clbxEntretenimiento);
+            this.bunifuGroupBox1.Controls.Add(this.clbxNaturaleza);
             this.bunifuGroupBox1.Controls.Add(this.label5);
             this.bunifuGroupBox1.Controls.Add(this.label4);
             this.bunifuGroupBox1.Controls.Add(this.label3);
@@ -227,6 +231,17 @@
             this.bunifuGroupBox1.TabIndex = 16;
             this.bunifuGroupBox1.TabStop = false;
             this.bunifuGroupBox1.Text = "Lugares turísticos";
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.Location = new System.Drawing.Point(805, 111);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(145, 30);
+            this.btnLimpiar.TabIndex = 17;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // pictureBox4
             // 
@@ -244,6 +259,7 @@
             this.bunifuGroupBox2.BorderColor = System.Drawing.Color.LightGray;
             this.bunifuGroupBox2.BorderRadius = 1;
             this.bunifuGroupBox2.BorderThickness = 1;
+            this.bunifuGroupBox2.Controls.Add(this.textBox1);
             this.bunifuGroupBox2.Controls.Add(this.btnHacerRuta);
             this.bunifuGroupBox2.Controls.Add(this.btnEliminar);
             this.bunifuGroupBox2.Controls.Add(this.label6);
@@ -251,7 +267,6 @@
             this.bunifuGroupBox2.Controls.Add(this.dataGridView1);
             this.bunifuGroupBox2.Controls.Add(this.label7);
             this.bunifuGroupBox2.Controls.Add(this.label9);
-            this.bunifuGroupBox2.Controls.Add(this.label8);
             this.bunifuGroupBox2.Font = new System.Drawing.Font("HP Simplified", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuGroupBox2.LabelAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bunifuGroupBox2.LabelIndent = 10;
@@ -262,6 +277,20 @@
             this.bunifuGroupBox2.TabIndex = 18;
             this.bunifuGroupBox2.TabStop = false;
             this.bunifuGroupBox2.Text = "Rutas";
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.ForeColor = System.Drawing.Color.Black;
+            this.textBox1.Location = new System.Drawing.Point(25, 141);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(191, 198);
+            this.textBox1.TabIndex = 19;
+            this.textBox1.Visible = false;
             // 
             // btnHacerRuta
             // 
@@ -352,6 +381,8 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(264, 70);
             this.dataGridView1.Name = "dataGridView1";
@@ -381,16 +412,6 @@
             this.label9.Size = new System.Drawing.Size(93, 19);
             this.label9.TabIndex = 14;
             this.label9.Text = "Arma tu ruta";
-            // 
-            // label8
-            // 
-            this.label8.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(21, 137);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(195, 66);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "lbDescripción";
-            this.label8.Visible = false;
             // 
             // gMapControl1
             // 
@@ -454,7 +475,7 @@
             this.bunifuPanel1.BorderColor = System.Drawing.Color.Transparent;
             this.bunifuPanel1.BorderRadius = 0;
             this.bunifuPanel1.BorderThickness = 0;
-            this.bunifuPanel1.Controls.Add(this.bunifuTileButton2);
+            this.bunifuPanel1.Controls.Add(this.btnEstimarPrecio);
             this.bunifuPanel1.Controls.Add(this.btnSalir);
             this.bunifuPanel1.Controls.Add(this.panel1);
             this.bunifuPanel1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -465,24 +486,25 @@
             this.bunifuPanel1.Size = new System.Drawing.Size(161, 694);
             this.bunifuPanel1.TabIndex = 0;
             // 
-            // bunifuTileButton2
+            // btnEstimarPrecio
             // 
-            this.bunifuTileButton2.BackColor = System.Drawing.SystemColors.Control;
-            this.bunifuTileButton2.color = System.Drawing.SystemColors.Control;
-            this.bunifuTileButton2.colorActive = System.Drawing.SystemColors.ButtonFace;
-            this.bunifuTileButton2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuTileButton2.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuTileButton2.ForeColor = System.Drawing.Color.Black;
-            this.bunifuTileButton2.Image = global::TurismoSV.Properties.Resources.evaluar_pago;
-            this.bunifuTileButton2.ImagePosition = 13;
-            this.bunifuTileButton2.ImageZoom = 30;
-            this.bunifuTileButton2.LabelPosition = 35;
-            this.bunifuTileButton2.LabelText = "ESTIMAR PRECIO";
-            this.bunifuTileButton2.Location = new System.Drawing.Point(17, 453);
-            this.bunifuTileButton2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.bunifuTileButton2.Name = "bunifuTileButton2";
-            this.bunifuTileButton2.Size = new System.Drawing.Size(124, 84);
-            this.bunifuTileButton2.TabIndex = 22;
+            this.btnEstimarPrecio.BackColor = System.Drawing.SystemColors.Control;
+            this.btnEstimarPrecio.color = System.Drawing.SystemColors.Control;
+            this.btnEstimarPrecio.colorActive = System.Drawing.SystemColors.ButtonFace;
+            this.btnEstimarPrecio.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEstimarPrecio.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEstimarPrecio.ForeColor = System.Drawing.Color.Black;
+            this.btnEstimarPrecio.Image = global::TurismoSV.Properties.Resources.evaluar_pago;
+            this.btnEstimarPrecio.ImagePosition = 13;
+            this.btnEstimarPrecio.ImageZoom = 30;
+            this.btnEstimarPrecio.LabelPosition = 35;
+            this.btnEstimarPrecio.LabelText = "ESTIMAR PRECIO";
+            this.btnEstimarPrecio.Location = new System.Drawing.Point(17, 453);
+            this.btnEstimarPrecio.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnEstimarPrecio.Name = "btnEstimarPrecio";
+            this.btnEstimarPrecio.Size = new System.Drawing.Size(124, 84);
+            this.btnEstimarPrecio.TabIndex = 22;
+            this.btnEstimarPrecio.Click += new System.EventHandler(this.btnEstimarPrecio_Click);
             // 
             // btnSalir
             // 
@@ -549,7 +571,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRadio)).EndInit();
             this.bunifuGroupBox1.ResumeLayout(false);
             this.bunifuGroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
@@ -571,18 +593,18 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private Bunifu.Framework.UI.BunifuTileButton btnSalir;
-        private Bunifu.Framework.UI.BunifuTileButton bunifuTileButton2;
+        private Bunifu.Framework.UI.BunifuTileButton btnEstimarPrecio;
         private Bunifu.UI.WinForms.BunifuPanel bunifuPanel1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
-        private System.Windows.Forms.CheckedListBox checkedListBox2;
-        private System.Windows.Forms.CheckedListBox checkedListBox3;
+        private System.Windows.Forms.CheckedListBox clbxNaturaleza;
+        private System.Windows.Forms.CheckedListBox clbxEntretenimiento;
+        private System.Windows.Forms.CheckedListBox clbxCultura;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown nudRadio;
         private Bunifu.UI.WinForms.BunifuGroupBox bunifuGroupBox1;
         private Bunifu.UI.WinForms.BunifuGroupBox bunifuGroupBox2;
         private System.Windows.Forms.Button btnEliminar;
@@ -591,11 +613,12 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnHacerRuta;
         private GMap.NET.WindowsForms.GMapControl gMapControl1;
         private System.Windows.Forms.TrackBar trackZoom;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

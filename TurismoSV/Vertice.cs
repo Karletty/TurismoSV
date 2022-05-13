@@ -12,6 +12,7 @@ namespace TurismoSV
         public Double lat;
         public Double lng;
         public List<Arco> listaAdyacencia;
+        public bool visitado = false;
 
         public Vertice(string ubicacion, Double lat, Double lng)
         {
@@ -21,7 +22,7 @@ namespace TurismoSV
             this.lng = lng;
             this.listaAdyacencia = new List<Arco>();
         }
-        public Vertice(): this("", 0, 0)
+        public Vertice() : this("", 0, 0)
         {
         }
         public override string ToString()

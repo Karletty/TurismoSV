@@ -26,7 +26,7 @@ namespace TurismoSV
             gmap.Overlays.Add(capaMarcadores);
         }
 
-        private void CrearMarcador(ref GMapOverlay capaMarcadores, ref GMapControl gmap)
+        public void CrearMarcador(ref GMapOverlay capaMarcadores, ref GMapControl gmap)
         {
             //Pone el marcador en el gMapControl
             GMarkerGoogle marcador = new GMarkerGoogle(new PointLatLng(lat, lng), tipo);
