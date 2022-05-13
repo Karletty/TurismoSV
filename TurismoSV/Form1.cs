@@ -49,7 +49,6 @@ namespace TurismoSV
         private double dist = 0;
         private FrmMatrizAdy frmMatriz;
         private FrmPago frmPago;
-        private Vertice nodoOrigen;
         GMapOverlay markerOverlay = new GMapOverlay("Marcador");
         GMapOverlay ourPoints = new GMapOverlay("Puntos BD");
         GMapOverlay routesOverlay = new GMapOverlay("Rutas");
@@ -60,10 +59,6 @@ namespace TurismoSV
         Double latInicial;
         Double lngInicial;
         GoogleApi geolocationTests = new GoogleApi();
-        bool trazarRuta = false;
-        int ContadorIndicaresRuta = 0;
-        PointLatLng inicio;
-        PointLatLng Final;
         private Categorias cat;
 
         public Form1()
@@ -72,7 +67,6 @@ namespace TurismoSV
             InitializeComponent();
             latInicial = geolocationTests.ubicacion.Lat;
             lngInicial = geolocationTests.ubicacion.Lng;
-            nodoOrigen = new Vertice("Ubicación Actual", latInicial, lngInicial);
             //Añade el punto a la lista de puntos, al mapa y al grafo, conecta al punto con él mismo
             Punto punto = new Punto(latInicial, lngInicial, "Ubicación actual", GMarkerGoogleType.blue, ref markerOverlay, ref gMapControl1);
             puntos.Add(punto);
@@ -198,16 +192,6 @@ namespace TurismoSV
                         refe = reader2["PuntoDeReferencia"] as string;
                     }
                     reader2.Close();
-
-                    GMarkerGoogle marcador = new GMarkerGoogle(new PointLatLng(lt, lng), GMarkerGoogleType.lightblue);
-                    markerOverlay.Markers.Add(marcador);
-
-                    marcador.ToolTipMode = MarkerTooltipMode.Always;
-                    marcador.ToolTipText = refe;
-
-                    gMapControl1.Overlays.Add(markerOverlay);
-                    gMapControl1.Zoom++;
-                    gMapControl1.Zoom--;
                     Punto punto = new Punto(lt, lng, refe, GMarkerGoogleType.lightblue, ref markerOverlay, ref gMapControl1);
 
                     puntos.Add(punto);
@@ -510,7 +494,7 @@ namespace TurismoSV
             {
                 Double[,] matriz = grafo.crearMatriz();
                 int totNodos = grafo.nodos.Count;
-                Dijkstra ruta = new Dijkstra(totNodos, matriz, grafo.nodos);
+                Dijkstra ruta = new Dijkstra(grafo.nodos);
                 //frmMatriz.MostrarMatriz(matriz, totNodos, grafo.nodos);
                 //frmMatriz.ShowDialog();
                 rutaMasCorta = ruta.rutaMasCorta;
@@ -570,9 +554,20 @@ namespace TurismoSV
         private void dropdownRutas_SelectedIndexChanged(object sender, EventArgs e)
         {
             Punto inicio = puntos[0];
-            puntos = new List<Punto>();
+            Vertice ubActual = grafo.nodos[0];
+            puntos.Clear();
             puntos.Add(inicio);
+            actualizarDgv();
+            int cant = grafo.nodos.Count;
+            for (int i = 1; i < cant; i++)
+            {
+                if (grafo.nodos.Count > 0)
+                {
+                    grafo.EliminarVertice(grafo.nodos[1]);
+                }
+            }
             Ruta();
+
         }
     }
 }

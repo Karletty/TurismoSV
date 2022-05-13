@@ -21,14 +21,5 @@ namespace TurismoSV
             SqlConnection Conn = new SqlConnection(Properties.Settings.Default.Conectar);
             return Conn;
         }
-        public static byte[] toByteArray(Image img, ImageFormat format)
-        {
-            //Convierte Image al formato establecido a través de MemoryStream
-            using (MemoryStream ms = new MemoryStream())
-            {
-                img.Save(ms, format);
-                return ms.ToArray();
-            }
-        }
     }
 }

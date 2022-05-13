@@ -398,8 +398,6 @@ C:\Users\karle\OneDrive\Documentos\CICLO III\PED G03T\PROYECTO CÁTEDRA\Fase 3\T
 C:\Users\karle\OneDrive\Documentos\CICLO III\PED G03T\PROYECTO CÁTEDRA\Fase 3\TurismoSV\TurismoSV\bin\Debug\System.Data.SqlClient.xml
 C:\Users\karle\OneDrive\Documentos\CICLO III\PED G03T\PROYECTO CÁTEDRA\Fase 3\TurismoSV\TurismoSV\bin\Debug\System.Data.SQLite.xml
 C:\Users\karle\OneDrive\Documentos\CICLO III\PED G03T\PROYECTO CÁTEDRA\Fase 3\TurismoSV\TurismoSV\bin\Debug\System.Security.Principal.Windows.xml
-C:\Users\karle\OneDrive\Documentos\CICLO III\PED G03T\PROYECTO CÁTEDRA\Fase 3\TurismoSV\TurismoSV\obj\Debug\TurismoSV.csproj.AssemblyReference.cache
-C:\Users\karle\OneDrive\Documentos\CICLO III\PED G03T\PROYECTO CÁTEDRA\Fase 3\TurismoSV\TurismoSV\obj\Debug\TurismoSV.csproj.SuggestedBindingRedirects.cache
 C:\Users\karle\OneDrive\Documentos\CICLO III\PED G03T\PROYECTO CÁTEDRA\Fase 3\TurismoSV\TurismoSV\obj\Debug\TurismoSV.Form1.resources
 C:\Users\karle\OneDrive\Documentos\CICLO III\PED G03T\PROYECTO CÁTEDRA\Fase 3\TurismoSV\TurismoSV\obj\Debug\TurismoSV.Properties.Resources.resources
 C:\Users\karle\OneDrive\Documentos\CICLO III\PED G03T\PROYECTO CÁTEDRA\Fase 3\TurismoSV\TurismoSV\obj\Debug\TurismoSV.csproj.GenerateResource.cache
@@ -518,3 +516,5 @@ C:\Users\karle\OneDrive\Documentos\CICLO III\PED G03T\PROYECTO CÁTEDRA\Fase 3\T
 C:\Users\karle\OneDrive\Documentos\CICLO III\PED G03T\PROYECTO CÁTEDRA\Fase 3\TurismoSV-master\TurismoSV-master\TurismoSV\obj\Debug\TurismoSV.csproj.CopyComplete
 C:\Users\karle\OneDrive\Documentos\CICLO III\PED G03T\PROYECTO CÁTEDRA\Fase 3\TurismoSV-master\TurismoSV-master\TurismoSV\obj\Debug\TurismoSV.exe
 C:\Users\karle\OneDrive\Documentos\CICLO III\PED G03T\PROYECTO CÁTEDRA\Fase 3\TurismoSV-master\TurismoSV-master\TurismoSV\obj\Debug\TurismoSV.pdb
+C:\Users\karle\OneDrive\Documentos\CICLO III\PED G03T\PROYECTO CÁTEDRA\Fase 3\TurismoSV\TurismoSV\obj\Debug\TurismoSV.csproj.AssemblyReference.cache
+C:\Users\karle\OneDrive\Documentos\CICLO III\PED G03T\PROYECTO CÁTEDRA\Fase 3\TurismoSV\TurismoSV\obj\Debug\TurismoSV.csproj.SuggestedBindingRedirects.cache

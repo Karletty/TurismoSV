@@ -8,24 +8,17 @@ namespace TurismoSV
 {
     internal class Dijkstra
     {
-        private int rango = 0;
-        private Double[,] matrizAdy;
         private List<Vertice> nodos;
-        private Double[] dist;
         public IEnumerable<Vertice> rutaMasCorta;
         public Double dmin = 0;
 
-        public Dijkstra(int rango, Double[,] matriz, List<Vertice> vertices)
+        public Dijkstra(List<Vertice> vertices)
         {
             nodos = new List<Vertice>();
-            this.rango = rango;
-            matrizAdy = new Double[rango, rango];
             foreach (Vertice v in vertices)
             {
                 nodos.Add(v);
             }
-            dist = new Double[rango];
-            matrizAdy = matriz;
 
             nodos[0].visitado = true;
             Vertice inicio = nodos[0];
@@ -33,7 +26,7 @@ namespace TurismoSV
             IEnumerable<IEnumerable<Vertice>> result = ObtenerPermutaiones(vertices, vertices.Count);
             int indiceDmenor;
             int vuelta = 1;
-            Double d = 0;
+            Double d;
             dmin = Double.MaxValue;
             indiceDmenor = 0;
             for (int i = 0; i < result.Count(); i++)
@@ -69,6 +62,7 @@ namespace TurismoSV
                 txt += $"{ v.ToString() }, ";
             }
         }
+
         public bool TodosVisitados(IEnumerable<Vertice> vertices)
         {
             for (int i = 0; i < vertices.Count(); i++)
@@ -85,6 +79,7 @@ namespace TurismoSV
                 return list.Select(t => new T[] { t });
             return ObtenerPermutaiones(list, length - 1).SelectMany(t => list.Where(e => !t.Contains(e)), (t1, t2) => t1.Concat(new T[] { t2 }));
         }
+
         public Double Distancia(Vertice a, Vertice b)
         {
             for (int i = 0; i < a.listaAdyacencia.Count; i++)
