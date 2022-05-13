@@ -300,6 +300,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>DbLugares.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\logo.ico" />
     <None Include="Resources\mejor-precio.png" />
     <None Include="Resources\markZoologico.png" />
     <None Include="Resources\markTeatro.png" />

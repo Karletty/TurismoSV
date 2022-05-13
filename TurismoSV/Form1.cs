@@ -569,6 +569,9 @@ namespace TurismoSV
 
         private void dropdownRutas_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Punto inicio = puntos[0];
+            puntos = new List<Punto>();
+            puntos.Add(inicio);
             Ruta();
         }
     }
