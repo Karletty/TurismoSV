@@ -490,6 +490,7 @@ namespace TurismoSV
 
         private void btnHacerRuta_Click(object sender, EventArgs e)
         {
+            routesOverlay = new GMapOverlay();
             if (grafo.nodos.Count > 1)
             {
                 Double[,] matriz = grafo.crearMatriz();
@@ -553,10 +554,6 @@ namespace TurismoSV
 
         private void dropdownRutas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Punto inicio = puntos[0];
-            puntos.Clear();
-            puntos.Add(inicio);
-            actualizarDgv();
             int cant = grafo.nodos.Count;
             for (int i = 1; i < cant; i++)
             {
@@ -564,11 +561,16 @@ namespace TurismoSV
                 {
                     grafo.EliminarVertice(grafo.nodos[1]);
                 }
+                if(puntos.Count > 0)
+                {
+                    puntos[1].EliminarMarcador(ref markerOverlay, ref gMapControl1, 1);
+                }
             }
             if (gMapControl1.Overlays.Contains(routesOverlay))
             {
                 gMapControl1.Overlays.Remove(routesOverlay);
             }
+            actualizarDgv();
             Ruta();
 
         }
