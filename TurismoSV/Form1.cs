@@ -554,25 +554,7 @@ namespace TurismoSV
 
         private void dropdownRutas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int cant = grafo.nodos.Count;
-            for (int i = 1; i < cant; i++)
-            {
-                if (grafo.nodos.Count > 0)
-                {
-                    grafo.EliminarVertice(grafo.nodos[1]);
-                }
-                if(puntos.Count > 0)
-                {
-                    puntos[1].EliminarMarcador(ref markerOverlay, ref gMapControl1, 1);
-                }
-            }
-            if (gMapControl1.Overlays.Contains(routesOverlay))
-            {
-                gMapControl1.Overlays.Remove(routesOverlay);
-            }
-            actualizarDgv();
             Ruta();
-
         }
     }
 }
